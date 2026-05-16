@@ -1,8 +1,9 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useMemo, useEffect, useState, useCallback } from 'react';
 import { Header } from './components/Header';
 import { JsonEditor } from './components/JsonEditor';
 import { ControlPanel } from './components/ControlPanel';
 import { tryShortenJson } from './utils/jsonShortener';
+import { extractArrayAnnotations } from './utils/arrayAnnotations';
 import { useDebounce } from './hooks/useDebounce';
 
 const PLACEHOLDER = `{
@@ -598,6 +599,11 @@ export default function App() {
 
   const debouncedInput = useDebounce(input, 500);
 
+  const inputAnnotations = useMemo(
+    () => extractArrayAnnotations(input),
+    [input],
+  );
+
   const shorten = useCallback(() => {
     if (!input.trim()) {
       setOutput('');
@@ -673,6 +679,7 @@ export default function App() {
             value={input}
             onChange={setInput}
             placeholder="Paste your JSON here..."
+            annotations={inputAnnotations}
           />
         </div>
 
