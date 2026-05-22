@@ -26,11 +26,11 @@ export function ControlPanel({
   hasOutput,
 }: ControlPanelProps) {
   return (
-    <div className="px-4 py-3 border-b border-zinc-800 bg-zinc-900/20 shrink-0">
+    <div className="px-4 py-3 border-b border-green-800 bg-green-900/15 shrink-0">
       <div className="flex flex-wrap items-center gap-x-5 gap-y-2.5">
         {/* Max items slider */}
         <div className="flex items-center gap-3">
-          <label htmlFor="max-items" className="text-xs font-medium text-zinc-400 uppercase tracking-wider">
+          <label htmlFor="max-items" className="text-xs font-medium text-green-400 uppercase tracking-wider">
             Max Items
           </label>
           <input
@@ -43,7 +43,7 @@ export function ControlPanel({
             onChange={(e) => onMaxItemsChange(Number(e.target.value))}
             className="w-24"
           />
-          <span className="text-sm font-mono text-zinc-200 tabular-nums w-3 text-center">
+          <span className="text-sm font-mono text-green-200 tabular-nums w-3 text-center">
             {maxItems}
           </span>
         </div>
@@ -54,14 +54,14 @@ export function ControlPanel({
             type="button"
             onClick={onShorten}
             disabled={!hasInput}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium bg-indigo-600 hover:bg-indigo-500 disabled:bg-zinc-800 disabled:text-zinc-600 text-white rounded-md transition-colors disabled:cursor-not-allowed"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium bg-emerald-600 hover:bg-emerald-500 disabled:bg-green-800 disabled:text-green-600 text-white rounded-md transition-colors disabled:cursor-not-allowed"
           >
             <Scissors className="w-3.5 h-3.5" />
             Shorten
           </button>
 
           {/* Auto-shorten toggle */}
-          <label className="toggle gap-1.5 text-xs text-zinc-400 select-none">
+          <label className="toggle gap-1.5 text-xs text-green-400 select-none">
             <input
               type="checkbox"
               checked={autoShorten}
@@ -72,7 +72,7 @@ export function ControlPanel({
             Auto
           </label>
 
-          <div className="w-px h-5 bg-zinc-800" />
+          <div className="w-px h-5 bg-green-700/50" />
 
           <button
             type="button"
@@ -80,8 +80,8 @@ export function ControlPanel({
             disabled={!hasOutput}
             className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md transition-colors disabled:cursor-not-allowed ${
               copied
-                ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-800'
-                : 'text-zinc-300 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 disabled:text-zinc-600 disabled:bg-zinc-800/50'
+                ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-700'
+                : 'text-green-200 bg-green-800 hover:bg-green-700 border border-green-700 disabled:text-green-600 disabled:bg-green-800/50'
             }`}
           >
             {copied ? (
@@ -101,7 +101,7 @@ export function ControlPanel({
             type="button"
             onClick={onClear}
             disabled={!hasInput && !hasOutput}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-zinc-300 bg-zinc-800 hover:bg-zinc-700 rounded-md transition-colors border border-zinc-700 disabled:text-zinc-600 disabled:bg-zinc-800/50 disabled:cursor-not-allowed"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-green-200 bg-green-800 hover:bg-green-700 rounded-md transition-colors border border-green-700 disabled:text-green-600 disabled:bg-green-800/50 disabled:cursor-not-allowed"
           >
             <Trash2 className="w-3.5 h-3.5" />
             Clear

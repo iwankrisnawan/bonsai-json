@@ -655,7 +655,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="h-dvh flex flex-col bg-zinc-950 text-zinc-100">
+    <div className="h-dvh flex flex-col bg-green-950 text-green-50">
       <Header />
 
       <ControlPanel
