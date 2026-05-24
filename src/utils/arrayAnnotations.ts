@@ -4,6 +4,13 @@ export interface ArrayAnnotation {
 }
 
 export function extractArrayAnnotations(json: string): ArrayAnnotation[] {
+  // Only produce annotations for valid JSON — bail early if invalid
+  try {
+    JSON.parse(json);
+  } catch {
+    return [];
+  }
+
   const annotations: ArrayAnnotation[] = [];
   let i = 0;
   let line = 1;
@@ -36,11 +43,11 @@ export function extractArrayAnnotations(json: string): ArrayAnnotation[] {
     i++;
     advance();
     while (i < json.length && json[i] !== '}') {
-      if (json[i] === '"') skipString(); // key
+      if (json[i] === '"') skipString();
       advance();
       if (json[i] === ':') i++;
       advance();
-      walkValue(); // value — may contain nested arrays
+      walkValue();
       advance();
       if (json[i] === ',') { i++; advance(); }
     }
@@ -56,7 +63,7 @@ export function extractArrayAnnotations(json: string): ArrayAnnotation[] {
     while (i < json.length && json[i] !== ']') {
       if (json[i] === ',') { i++; advance(); continue; }
       items++;
-      walkValue(); // recursive — handles any value type
+      walkValue();
       advance();
     }
     i++;
