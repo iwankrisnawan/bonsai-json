@@ -595,6 +595,7 @@ export default function App() {
   const [maxItems, setMaxItems] = useState(2);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [copiedMinify, setCopiedMinify] = useState(false);
   const [autoShorten, setAutoShorten] = useState(true);
 
   const debouncedInput = useDebounce(input, 500);
@@ -647,11 +648,21 @@ export default function App() {
     });
   }, [output]);
 
+  const handleCopyMinify = useCallback(() => {
+    if (!output) return;
+    const minified = JSON.stringify(JSON.parse(output));
+    navigator.clipboard.writeText(minified).then(() => {
+      setCopiedMinify(true);
+      setTimeout(() => setCopiedMinify(false), 2000);
+    });
+  }, [output]);
+
   const handleClear = useCallback(() => {
     setInput('');
     setOutput('');
     setError(null);
     setCopied(false);
+    setCopiedMinify(false);
   }, []);
 
   return (
@@ -663,8 +674,10 @@ export default function App() {
         onMaxItemsChange={setMaxItems}
         onShorten={shorten}
         onCopy={handleCopy}
+        onCopyMinify={handleCopyMinify}
         onClear={handleClear}
         copied={copied}
+        copiedMinify={copiedMinify}
         autoShorten={autoShorten}
         onAutoShortenChange={setAutoShorten}
         hasInput={input.trim().length > 0}

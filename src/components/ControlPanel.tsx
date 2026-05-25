@@ -1,12 +1,14 @@
-import { Scissors, Copy, Check, Trash2 } from 'lucide-react';
+import { Scissors, Copy, Check, Trash2, FileMinus } from 'lucide-react';
 
 interface ControlPanelProps {
   maxItems: number;
   onMaxItemsChange: (value: number) => void;
   onShorten: () => void;
   onCopy: () => void;
+  onCopyMinify: () => void;
   onClear: () => void;
   copied: boolean;
+  copiedMinify: boolean;
   autoShorten: boolean;
   onAutoShortenChange: (value: boolean) => void;
   hasInput: boolean;
@@ -18,8 +20,10 @@ export function ControlPanel({
   onMaxItemsChange,
   onShorten,
   onCopy,
+  onCopyMinify,
   onClear,
   copied,
+  copiedMinify,
   autoShorten,
   onAutoShortenChange,
   hasInput,
@@ -93,6 +97,29 @@ export function ControlPanel({
               <>
                 <Copy className="w-3.5 h-3.5" />
                 Copy
+              </>
+            )}
+          </button>
+
+          <button
+            type="button"
+            onClick={onCopyMinify}
+            disabled={!hasOutput}
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md transition-colors disabled:cursor-not-allowed ${
+              copiedMinify
+                ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-700'
+                : 'text-green-200 bg-green-800 hover:bg-green-700 border border-green-700 disabled:text-green-600 disabled:bg-green-800/50'
+            }`}
+          >
+            {copiedMinify ? (
+              <>
+                <Check className="w-3.5 h-3.5" />
+                Copied!
+              </>
+            ) : (
+              <>
+                <FileMinus className="w-3.5 h-3.5" />
+                Minify
               </>
             )}
           </button>

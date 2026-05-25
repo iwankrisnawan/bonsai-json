@@ -191,7 +191,7 @@ function CollapsibleNode({
           )}
         </span>
 
-        <span className="flex items-baseline gap-1 min-w-0 flex-wrap">
+        <span className="flex items-baseline gap-1 min-w-0">
           {keyName !== undefined && (
             <span className="text-amber-400 shrink-0">&quot;{keyName}&quot;<span className="text-green-400/70">: </span></span>
           )}
@@ -264,7 +264,7 @@ function Line({
 }) {
   return (
     <div
-      className="flex items-baseline min-w-0 flex-wrap hover:bg-green-900/20 rounded-sm -ml-1 pl-1"
+      className="flex items-baseline min-w-0 hover:bg-green-900/20 rounded-sm -ml-1 pl-1"
       style={{ paddingLeft: `${depth * 1.25 + 1.25}rem` }}
     >
       <span className="w-3.5 shrink-0" />
