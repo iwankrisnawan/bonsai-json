@@ -1,4 +1,4 @@
-import { Scissors, List, GitCompare } from 'lucide-react';
+import { Scissors, List, GitCompare, CopyCheck } from 'lucide-react';
 
 interface HeaderProps {
   page: string;
@@ -51,6 +51,18 @@ export function Header({ page, onPageChange }: HeaderProps) {
         >
           <GitCompare className="w-3 h-3 inline mr-1 -mt-0.5" />
           Comparator
+        </button>
+        <button
+          type="button"
+          onClick={() => onPageChange('duplicates')}
+          className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors ${
+            page === 'duplicates'
+              ? 'bg-emerald-600/20 text-emerald-400'
+              : 'text-green-400 hover:text-green-300 hover:bg-green-800/50'
+          }`}
+        >
+          <CopyCheck className="w-3 h-3 inline mr-1 -mt-0.5" />
+          Duplicates
         </button>
       </nav>
 
